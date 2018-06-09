@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE = edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>登录</title>
+    <script src="/static/jquery/jquery.js"></script>
+
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/login.css">
+    <script src="/static/javascript/login.js"></script>
+    <script src="/static/javascript/readmessge.js"></script>
+</head>
+<body>
+<p class="tip" style="color: #ef4238">欢迎来到那一年影城</p>
+<div id="login"></div>
+<div class="cont">
+    <div class="form sign-in">
+        <form>
+            <label>
+                <span>账号</span>
+                <input type="text" name = "user" class = "name" id="name" />
+            </label>
+            <label>
+                <span>密码</span>
+                <input type="password" name = "pass" class = "password" id="password" />
+            </label>
+            <label for="name" style="color: #cfcfcf">选择身份</label>
+                <select class="form-control" name = "select"  id = "select" style="width: 200px;  margin:auto;padding: 0 0 0 74px;">
+                    <option value="administrator" style="color: #cfcfcf;text-align: center">管理员</option>
+                    <option value="manager" style="color: #cfcfcf">经理</option>
+                    <option value="saler" style="color: #cfcfcf">售票员</option>
+                </select>
+            <p class="forgot-pass">忘记密码？</p>
+            <p><label id = "loginError"></label></p>
+            <button type="button" class="submit" onclick="login()">login</button>
+            <button type="button" class="fb-btn">Connect with <span>facebook</span></button>
+        </form>
+    </div>
+    <div class="sub-cont">
+        <div class="img">
+            <div class="img__text m--up">
+                <h2>One of us?</h2>
+                <p>if you already has an account,just sign in.We've missed you!</p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    function login() {
+        name = document.getElementById("name").value;
+        pass = document.getElementById("password").value;
+        error = document.getElementById("loginError");
+        select = document.getElementById("select");
+        let p = /^[0-9]{3,6}$/;
+        flag = p.test(name);
+        if(flag == false ){
+            error.innerText = "用户名应为3-6为数字组成";
+            return false;
+        }
+        if(name == "" ||pass == ""){
+            error.innerHTML = "请输入用户名和密码";
+            return false;
+        }
+
+        else{
+            error.innerText = "";
+            xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function () {
+                if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
+                    json = JSON.parse(xmlhttp.responseText);
+                    if(json.state == false){
+                        error.innerText = json.info;
+                    }else{
+                        window.location.href=json.href;
+                    }
+                }
+            };
+            let url = window.location.search;
+            url = url.substring(url.lastIndexOf('=')+1,url.length);
+            xmlhttp.open('POST','/account');
+            xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            xmlhttp.send("username="+name+"&password="+pass+"&select="+select.value+"&url="+url);
+        }
+    }
+</script>
+</html>

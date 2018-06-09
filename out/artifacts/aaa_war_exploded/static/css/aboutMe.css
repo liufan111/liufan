@@ -1,0 +1,23 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+#img{
+    width: 120px;
+    height: 120px;
+    margin-top: 20px;
+}
+
+#info{
+    margin-top: 20px;
+    width: 500px;
+}
+
+#table{
+    text-align: center;
+}
+
+#butInfo{
+    margin-left: 700px;
+}
