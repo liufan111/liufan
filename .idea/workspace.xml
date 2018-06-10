@@ -31,61 +31,49 @@
     <favorites_list name="TTMS_jsp" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.40409955">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="sale.jsp" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/web/seller/sale.jsp">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="598">
-                  <caret line="26" selection-start-line="26" selection-end-line="26" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="schedule.jsp" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/web/manager/schedule.jsp">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="4623">
-                  <caret line="201" column="19" selection-start-line="201" selection-start-column="19" selection-end-line="201" selection-end-column="19" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="schedule.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/web/static/javascript/schedule.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="156">
-                  <caret line="296" column="50" selection-start-line="296" selection-start-column="50" selection-end-line="296" selection-end-column="50" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="playSchedule.jsp" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/web/seller/playSchedule.jsp">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1909">
-                  <caret line="83" selection-start-line="83" selection-end-line="83" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="playSchedule.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/web/static/javascript/playSchedule.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="276">
-                  <caret line="12" column="18" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="sale.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/seller/sale.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="92">
+              <caret line="47" column="14" lean-forward="true" selection-start-line="47" selection-start-column="14" selection-end-line="47" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sale.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web/static/javascript/sale.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="184">
+              <caret line="20" lean-forward="true" selection-start-line="19" selection-start-column="4" selection-end-line="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="schedule.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/manager/schedule.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2898">
+              <caret line="126" column="29" selection-end-line="207" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="playSchedule.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/seller/playSchedule.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="161">
+              <caret line="43" column="24" lean-forward="true" selection-start-line="43" selection-start-column="24" selection-end-line="43" selection-end-column="24" />
+              <folding>
+                <element signature="e#3865#3872#0#HTML" expanded="true" />
+                <element signature="e#6083#6090#0#HTML" expanded="true" />
+                <element signature="e#8148#8155#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -197,7 +185,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="603" />
     <option name="y" value="28" />
     <option name="width" value="1024" />
@@ -224,50 +212,39 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="TTMS_jsp-master - 备份" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TTMS_jsp-master - 备份" type="462c0819:PsiDirectoryNode" />
+              <item name="TTMS_junior" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TTMS_junior" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="TTMS_jsp-master - 备份" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TTMS_jsp-master - 备份" type="462c0819:PsiDirectoryNode" />
+              <item name="TTMS_junior" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TTMS_junior" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="TTMS_jsp-master - 备份" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TTMS_jsp-master - 备份" type="462c0819:PsiDirectoryNode" />
+              <item name="TTMS_junior" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TTMS_junior" type="462c0819:PsiDirectoryNode" />
               <item name="web" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="TTMS_jsp-master - 备份" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TTMS_jsp-master - 备份" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TTMS_jsp-master - 备份" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TTMS_jsp-master - 备份" type="462c0819:PsiDirectoryNode" />
+              <item name="TTMS_junior" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TTMS_junior" type="462c0819:PsiDirectoryNode" />
               <item name="web" type="462c0819:PsiDirectoryNode" />
               <item name="manager" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="TTMS_jsp-master - 备份" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TTMS_jsp-master - 备份" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="seller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TTMS_jsp-master - 备份" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TTMS_jsp-master - 备份" type="462c0819:PsiDirectoryNode" />
+              <item name="TTMS_junior" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TTMS_junior" type="462c0819:PsiDirectoryNode" />
               <item name="web" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="TTMS_jsp-master - 备份" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TTMS_jsp-master - 备份" type="462c0819:PsiDirectoryNode" />
+              <item name="TTMS_junior" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TTMS_junior" type="462c0819:PsiDirectoryNode" />
               <item name="web" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
               <item name="javascript" type="462c0819:PsiDirectoryNode" />
@@ -277,7 +254,6 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="AndroidView" />
     </panes>
   </component>
@@ -292,7 +268,7 @@
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Font" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -669,11 +645,13 @@
       <workItem from="1528330807774" duration="13129000" />
       <workItem from="1528417076669" duration="15559000" />
       <workItem from="1528531299838" duration="695000" />
+      <workItem from="1528534988822" duration="8592000" />
+      <workItem from="1528633546101" duration="7173000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="333292000" />
+    <option name="totallyTimeSpent" value="349057000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -686,32 +664,33 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Palette&#9;" order="6" />
-      <window_info id="Image Layers" order="5" />
-      <window_info anchor="bottom" id="Java Enterprise" order="14" weight="0.3289256" />
-      <window_info anchor="right" id="Capture Analysis" order="7" />
-      <window_info active="true" anchor="bottom" id="Event Log" order="7" sideWeight="0.45241582" side_tool="true" visible="true" weight="0.24921136" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.6229868" side_tool="true" visible="true" weight="0.19873817" />
       <window_info anchor="bottom" id="Application Servers" order="9" weight="0.3296355" />
       <window_info anchor="right" id="Maven Projects" order="9" />
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="11" weight="0.3289256" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.5475842" weight="0.16719243" />
-      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.4969651" weight="0.33479214" />
       <window_info id="Capture Tool" order="8" />
       <window_info id="Designer" order="3" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4280992" weight="0.10175695" />
-      <window_info id="Web" order="6" sideWeight="0.57190084" side_tool="true" weight="0.19195752" />
       <window_info anchor="right" id="Database" order="5" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.2488189" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="4" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.7240117" side_tool="true" weight="0.19873817" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.4875549" weight="0.21451104" />
+      <window_info anchor="right" id="Palette&#9;" order="6" />
+      <window_info id="Image Layers" order="5" />
+      <window_info anchor="bottom" id="Java Enterprise" order="14" weight="0.3289256" />
+      <window_info anchor="right" id="Capture Analysis" order="7" />
+      <window_info anchor="bottom" id="Version Control" order="11" weight="0.3289256" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.37701318" visible="true" weight="0.19873817" />
+      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.4969651" weight="0.33479214" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4280992" visible="true" weight="0.15959005" />
+      <window_info id="Web" order="6" sideWeight="0.57190084" side_tool="true" weight="0.19195752" />
       <window_info anchor="right" id="Theme Preview" order="8" />
       <window_info id="Favorites" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.516692" side_tool="true" weight="0.21322314" />
-      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.4875549" weight="0.21451104" />
       <window_info anchor="bottom" id="Thumbnails" order="13" weight="0.3290938" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info id="Nl-Palette" order="2" />
@@ -722,42 +701,6 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4969651" weight="0.5233333" />
     </layout>
-    <layout-to-restore>
-      <window_info anchor="bottom" id="Thumbnails" order="13" weight="0.3290938" />
-      <window_info anchor="bottom" id="Application Servers" order="9" weight="0.3296355" />
-      <window_info id="Designer" order="3" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info id="Image Layers" order="5" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.5475842" visible="true" weight="0.24921136" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info id="UI Designer" order="4" />
-      <window_info anchor="right" id="Properties" order="4" />
-      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.4969651" weight="0.33479214" />
-      <window_info id="Capture Tool" order="8" />
-      <window_info anchor="right" id="Capture Analysis" order="7" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.45241582" side_tool="true" visible="true" weight="0.24921136" />
-      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.4875549" weight="0.21451104" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Theme Preview" order="8" />
-      <window_info anchor="bottom" id="Java Enterprise" order="14" weight="0.3289256" />
-      <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="11" weight="0.3289256" />
-      <window_info id="Nl-Palette" order="2" />
-      <window_info anchor="right" id="Maven Projects" order="9" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4280992" visible="true" weight="0.10175695" />
-      <window_info anchor="right" id="Database" order="5" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info id="Web" order="6" sideWeight="0.57190084" side_tool="true" weight="0.19195752" />
-      <window_info anchor="right" id="Palette&#9;" order="6" />
-      <window_info id="Favorites" order="7" side_tool="true" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.2488189" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4969651" weight="0.5233333" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.516692" side_tool="true" weight="0.21322314" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -775,13 +718,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/sss/model/Studio.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="45" column="28" lean-forward="true" selection-start-line="45" selection-start-column="28" selection-end-line="45" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/static/javascript/manstu.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
@@ -1020,13 +956,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/seller/playSchedule.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1909">
-          <caret line="83" selection-start-line="83" selection-end-line="83" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/static/javascript/user.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="368">
@@ -1038,16 +967,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
           <caret line="41" column="28" lean-forward="true" selection-start-line="41" selection-start-column="28" selection-end-line="41" selection-end-column="28" />
-          <folding>
-            <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/static/javascript/sale.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1822">
-          <caret line="4" column="6" lean-forward="true" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -1065,31 +984,57 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/seller/sale.jsp">
+    <entry file="file://$PROJECT_DIR$/web/static/javascript/schedule.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="598">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
+        <state relative-caret-position="230">
+          <caret line="10" column="55" lean-forward="true" selection-start-line="10" selection-start-column="55" selection-end-line="10" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="4184" column="4" selection-start-line="4184" selection-start-column="4" selection-end-line="4184" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/manager/schedule.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4623">
-          <caret line="201" column="19" selection-start-line="201" selection-start-column="19" selection-end-line="201" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/static/javascript/schedule.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="296" column="50" selection-start-line="296" selection-start-column="50" selection-end-line="296" selection-end-column="50" />
+        <state relative-caret-position="2898">
+          <caret line="126" column="29" selection-end-line="207" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/static/javascript/playSchedule.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="276">
-          <caret line="12" column="18" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
+          <caret line="48" column="84" selection-start-line="48" selection-start-column="84" selection-end-line="48" selection-end-column="84" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/seller/playSchedule.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="43" column="24" lean-forward="true" selection-start-line="43" selection-start-column="24" selection-end-line="43" selection-end-column="24" />
+          <folding>
+            <element signature="e#3865#3872#0#HTML" expanded="true" />
+            <element signature="e#6083#6090#0#HTML" expanded="true" />
+            <element signature="e#8148#8155#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/seller/sale.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="47" column="14" lean-forward="true" selection-start-line="47" selection-start-column="14" selection-end-line="47" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/static/javascript/sale.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="20" lean-forward="true" selection-start-line="19" selection-start-column="4" selection-end-line="20" />
         </state>
       </provider>
     </entry>

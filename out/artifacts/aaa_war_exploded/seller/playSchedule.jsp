@@ -1,28 +1,23 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: 刘凡
-  Date: 2018/6/8
-  Time: 11:07
-  To change this template use File | Settings | File Templates.
---%>
-<<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+
+<%@ page pageEncoding="utf-8"  isErrorPage="false" errorPage="../error.jsp" contentType="text/html" %>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>剧目的演出计划</title>
+    <title>安排演出计划</title>
     <link rel="stylesheet" type="text/css" href="/static/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/static/css/user.css">
     <script src="/static/javascript/playSchedule.js"></script>
     <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
     <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    <script src="/static/javascript/readmessge.js"></script>
     <script src="/static/javascript/userMessage.js"></script>
-    <script src="/static/javascript/message.js"></script>
+    <script src="/static/javascript/readmessge.js"></script>
+    <%--<script src="/static/javascript/message.js"></script>--%>
     <link rel="stylesheet" href="/static/css/me.css">
 
 </head>
 <body>
+
 <!--导航-->
 
 <div id="usermessage">
@@ -39,24 +34,25 @@
         </nav>
     </div>
 </div>
-<!--显示剧目信息-->
-<div>
 
-</div>
-<!--显示剧目的演出计划-->
+
+<!--所有的演出计划-->
 <div id="table">
-    <table class="table table-striped" id="Schedule">
+    <table class="table table-striped table-hover" id = 'schedule' onclick="scheduleRow(this)" >
+        <caption style="text-align: center">演出计划</caption>
         <tr class="warning">
             <td>演出厅</td>
-            <td>电影名称</td>
+            <td>剧目名称</td>
             <td>演出时间</td>
             <td>票价</td>
+            <td>选座购票</td>
+            <%--<td><button id="select_seat">选座购票</button></td>--%>
         </tr>
-        <tbody id = "tbody">
-
+        <tbody id="tbody">
 
         </tbody>
     </table>
+
 </div>
 <div style="margin:0px 30px;font-size: 18px;text-align: center">
     <button type = "button" class="btn btn-default navbar-btn"onclick="other_page(-1)"><</button>
@@ -72,12 +68,135 @@
 </div>
 <li id="delete_now" style="display: none"></li>
 
-</body>
+<!--演出计划的增删改查-->
+<div style="float: right">
+    <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+            <input id="play_id" type="text" class="form-control" placeholder="查找剧目的演出计划">
+        </div>
+    </form>
 
+    <button class="btn btn-default" onclick="reset_get()"><i class="fa fa-search" aria-hidden="true"></i> 查找</button>
+    <%--<button class="btn btn-default navbar-btn" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus" aria-hidden="true"></i>添加演出计划</button>--%>
+    <%--<button class="btn btn-default navbar-btn" id='deleteSchedule' onclick="removeSchedule()"><i class="fa fa-minus" aria-hidden="true"></i>删除演出计划</button>--%>
+    <%--<button class="btn btn-defalut navbar-btn" id='changeSchedule' onclick="change()"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>修改演出计划</button>--%>
+</div>
+
+<!--演出计划添加信息-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel" style="text-align: center">
+                    添加演出计划
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form role="form">
+                    <%--剧目名称: <input type="text" name = "studioName" id="studioName" class="form-control" placeholder="请输入演出厅名称" onblur="check()" required/><br><span id = 'err'></span><br>--%>
+                    剧目名称：
+                    <div class="form-group">
+                        <select class="input-xlarge id=play_name">
+                            <option>超时空同居</option>
+                            <option>后来的我们</option>
+                            <option>钢铁侠</option>
+                            <option>奔跑吧</option>
+                        </select>
+                    </div>
+                    演出厅:
+                    <div class="form-group">
+                        <select class="input-xlarge id=studio_name">
+                            <option>1号厅</option>
+                            <option>2号厅</option>
+                            <option>3号厅</option>
+                            <option>4号厅</option>
+                        </select>
+                    </div>
+                    演出时间:<input type="text" class="layui-input" name="sched_time" id="sched_time" placeholder="yyyy-MM-dd HH:mm:ss"/><br>
+                    票价: <input type="text" name="sched_ticket_price" id = "sched_ticket_price" class="form-control" placeholder="票价"/><br>
+                </form>
+                <div class="modal-footer">
+                    <button class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button class="btn btn-primary " onclick="addSchedule()" data-dismiss="modal">提交更改</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--修改演出计划-->
+<div class="modal fade" id = "myModals" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="ModalLabel" style="text-align: center">
+                    修改演出计划
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form role="form" >
+                    剧目名称：
+                    <div class="form-group">
+                        <select class="input-xlarge id=change_play">
+                            <option>enter</option>
+                            <option>Your</option>
+                            <option>Options</option>
+                            <option>Here!</option>
+                        </select>
+                    </div>
+                    演出厅:
+                    <div class="form-group">
+                        <select class="input-xlarge id=change_studio">
+                            <option>enter</option>
+                            <option>Your</option>
+                            <option>Options</option>
+                            <option>Here!</option>
+                        </select>
+                    </div>
+                    演出时间:<input type="text" class="layui-input" name="sched_time" id="change_time" placeholder="yyyy-MM-dd HH:mm:ss">
+                    票价: <input type="text" name="sched_ticket_price" id = "change_price" class="form-control" placeholder="票价"/><br>
+                </form>
+
+                </form>
+                <div class="modal-footer">
+                    <button class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button class="btn btn-primary " data-dismiss="modal" onclick="putSchedule()">提交更改</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#error"></button>-->
+
+<div class="modal fade" id="error" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="alert alert-warning">
+            <a href="#" class="close" data-dismiss="alert">
+                &times;
+            </a>
+            <strong>警告</strong><p id = 'waring'></p>
+        </div>
+    </div><!-- /.modal -->
+</div>
+
+
+
+</body>
 <script>
-    get_user_message('/me.jsp');
-    message();
-    //    get_back_entry();
+    /* laydate.render({
+         elem: '#time'
+         ,type: 'datetime'
+     });*/
     get_schedule();
+    get_user_message('/me.jsp');
+
 </script>
 </html>

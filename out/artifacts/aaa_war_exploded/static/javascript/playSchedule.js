@@ -5,8 +5,11 @@ let number = 0;
 function get_schedule(){
     let each_nums=document.getElementById("each_nums").value;
     let now_page=document.getElementById("now_page").innerText;
+    // alert("qqqqq");
     let play_id=document.getElementById('play_id').value;
+    // alert("wwwww");
     let xhr = new XMLHttpRequest();
+
     xhr.onreadystatechange=function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             let res = JSON.parse(xhr.responseText);
@@ -42,10 +45,14 @@ function get_schedule(){
                 td2.innerText = json[i][2];
                 let td3 = document.createElement('td');
                 td3.innerText = json[i][3];
+                let td4 = document.createElement('td');
+                td4.innerHTML="<button id=\"select_seat\" class=\"btn btn-success\" onclick=\"window.open('sale.jsp')\">选座购票</button>";
                 tr.appendChild(td0);
                 tr.appendChild(td1);
                 tr.appendChild(td2);
                 tr.appendChild(td3);
+                tr.appendChild(td4);
+
                 tbody.appendChild(tr);
             }
 
