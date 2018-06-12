@@ -41,12 +41,48 @@
 </div>
 
 <!--热映电影-->
+<div id="test">
+    <%--<input id="input_play">--%>
+    <%--<button id="submit" onclick="window.open('playSchedule.jsp')">--%>
+        <%--提交--%>
+    <%--</button>--%>
+    <%--<img id="play_img" src="/static/image/test_play.jpg" onclick="">--%>
+    <img id="play_img" src="/static/image/test_play.jpg" onclick="get_play()">
+
+</div>
 <div id="'main">
-    <div class="box" >
-        <div class="'pic">
-            <img src = "/static/image/play1.jpg">
+    <div class="pin" >
+        <div class="box">
+            <img src = "/Login_ssm_mav_picbyte/user/toLookImage?id=13">
         </div>
     </div>
+    <div class="pin" >
+        <div class="box">
+            <img src = "/Login_ssm_mav_picbyte/user/toLookImage?id=14">
+        </div>
+    </div>
+    <div class="pin" >
+        <div class="box">
+            <img src = "/Login_ssm_mav_picbyte/user/toLookImage?id=13">
+        </div>
+    </div>
+    <div class="pin" >
+        <div class="box">
+            <img src = "/Login_ssm_mav_picbyte/user/toLookImage?id=15">
+        </div>
+    </div>
+    <div class="pin">
+        <div class="box">
+            <img src="/Login_ssm_mav_picbyte/user/toLookImage?id=16">
+        </div>
+    </div>
+    <div class="pin">
+        <div class="box">
+            <img src="/Login_ssm_mav_picbyte/user/toLookImage?id=17">
+        </div>
+    </div>
+
+
 
 </div>
 

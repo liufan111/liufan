@@ -46,7 +46,6 @@
             <td>演出时间</td>
             <td>票价</td>
             <td>选座购票</td>
-            <%--<td><button id="select_seat">选座购票</button></td>--%>
         </tr>
         <tbody id="tbody">
 
@@ -195,6 +194,7 @@
          elem: '#time'
          ,type: 'datetime'
      });*/
+    get_play();
     get_schedule();
     get_user_message('/me.jsp');
 

@@ -11,7 +11,8 @@ function sscroll() {
         url:'/api/play',
         dataType: 'json',
         success: function (data) {
-            pic = eval(data);//转换成js对象
+            alert(data);
+            // pic = eval(data);//转换成js对象
         },
         error: function (data) {
             alert("JSON数据获取失败，请联系管理员！");

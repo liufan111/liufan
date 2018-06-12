@@ -17,7 +17,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 @WebServlet(name="play",urlPatterns="/api/play")
+
 public class playServer extends HttpServlet{
+    private  static final long serialVersionUID = 1L;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/json;charset = utf-8");
@@ -27,16 +29,15 @@ public class playServer extends HttpServlet{
         Play p = new Play();
         try {
             p.setPlay_type_id(Integer.valueOf(request.getParameter("play_type_id")));
-            p.setPlay_lang_id(Integer.valueOf(request.getParameter("play_lang-id")));
+            p.setPlay_lang_id(Integer.valueOf(request.getParameter("play_lang_id")));
             p.setPlay_name(request.getParameter("play_name"));
             p.setPlay_introduction(request.getParameter("play_introduction"));
             p.setPlay_image(request.getParameter("play_image"));
             p.setPlay_length(Integer.valueOf(request.getParameter("play_length")));
             p.setPlay_ticket_price(BigDecimal.valueOf(Integer.valueOf(request.getParameter("play_ticket_price"))));
             p.setPlay_status(Integer.valueOf(request.getParameter("play_status")));
-
         }catch (Exception e){
-            System.out.println("剧目信息获取失败");
+            System.out.println("剧目信息获取失败" + e);
             json.put("state",false);
             out.write(json.toString());
             return;
@@ -158,6 +159,7 @@ public class playServer extends HttpServlet{
                     String z[] = x.split("=");
                     hm.put(z[0], z[1]);
                 }
+
             }catch (Exception e){
 
             }
@@ -173,12 +175,12 @@ public class playServer extends HttpServlet{
                 out.write(json.toString());
                 return ;
             }
-            if(DAOFactory.createStudioDAO().delete(id)){
+            if(DAOFactory.createPlayDAO().delete(id)){
                 json.put("status",true);
                 out.write(json.toString());
             }else{
                 json.put("status",false);
-                System.out.print("serr");
+                System.out.print("err");
                 out.write(json.toString());
             }
         }
@@ -217,20 +219,20 @@ public class playServer extends HttpServlet{
             try{
                 pl.setPlay_id(Integer.valueOf(hm.get("play_id")));
                 pl.setPlay_type_id(Integer.valueOf(hm.get("play_type_id")));
-                pl.setPlay_lang_id(Integer.valueOf(hm.get("play_lang-id")));
+                pl.setPlay_lang_id(Integer.valueOf(hm.get("play_lang_id")));
                 pl.setPlay_name(hm.get("play_name"));
                 pl.setPlay_introduction(hm.get("play_introduction"));
                 pl.setPlay_image(hm.get("play_image"));
                 pl.setPlay_length(Integer.valueOf(hm.get("play_length")));
                 pl.setPlay_ticket_price(BigDecimal.valueOf(Integer.valueOf(hm.get("play_ticket_price"))));
                 pl.setPlay_status(Integer.valueOf(hm.get("play_status")));
+
             }catch (Exception e){
                 e.printStackTrace();
                 json.put("state",false);
                 out.write(json.toString());
                 return;
             }
-
             if(hm.get("play_introduction") != null){
                 pl.setPlay_introduction(hm.get("play_introduction"));
             }
@@ -244,5 +246,7 @@ public class playServer extends HttpServlet{
 
 
         }
+
+
 
 }

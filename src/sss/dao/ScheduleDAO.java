@@ -21,7 +21,7 @@ public class ScheduleDAO implements ISchedule {
         Connection con=ConnectionManager.getInstance().getConnection();
         PreparedStatement pstmt=null;
         try{
-            String sql="insert into Schedule(studio_id,play_id,sched_time,sched_ticket_price) values(?,?,?,?)";
+            String sql="insert into schedule(studio_id,play_id,sched_time,sched_ticket_price) values(?,?,?,?)";
             pstmt=con.prepareStatement(sql);
             pstmt.setInt(1, schedule.getStudio_id());
             pstmt.setInt(2, schedule.getPlay_id());
@@ -135,7 +135,7 @@ public class ScheduleDAO implements ISchedule {
         try
         {
             // 获取相应地演出计划
-            pstmt = con.prepareStatement("select * from Schedule where play_id=?");
+            pstmt = con.prepareStatement("select * from schedule where play_id=?");
             pstmt.setInt(1, play_id);
             rs = pstmt.executeQuery();
             while(rs.next())

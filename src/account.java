@@ -49,11 +49,12 @@ public class account extends HttpServlet {
 
                     json.put("state", true);
                     if (sate == 1){
-                        json.put("href","/mana/user.jsp");
+                        json.put("href","/admin/user.jsp");
                     }
                     //经理访问的
                     else if (sate == 0){
-                        json.put("href","/manager/schedule.jsp");
+                        json.put("href","/mana/play.jsp");
+
                     }
                     //售票员访问的
                     else {

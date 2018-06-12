@@ -1,9 +1,18 @@
 'use strict'
 let number = 0;
 //var playid = 0;
+
+//获取sale.jsp中用户点击的图片id
+function get_play(){
+    var img1 = document.getElementById("play_img");
+    alert(img1.ID);
+    xhr.open('GET','sale.jsp');
+    xhr.send();
+    window.location.href="/seller/playSchedule.jsp";
+}
 //显示所有信息
 function get_schedule(){
-    let each_nums=document.getElementById("each_nums").value;
+    let each_nums=document. getElementById("each_nums").value;
     let now_page=document.getElementById("now_page").innerText;
     // alert("qqqqq");
     let play_id=document.getElementById('play_id').value;
@@ -45,6 +54,8 @@ function get_schedule(){
                 td2.innerText = json[i][2];
                 let td3 = document.createElement('td');
                 td3.innerText = json[i][3];
+                // td3.innerHTML="<p class=\"text-primary\">json[i][3]</p>";  //不对
+                // td3.innerHTML="<link href='/image/rmb1.ico' rel=icon />";
                 let td4 = document.createElement('td');
                 td4.innerHTML="<button id=\"select_seat\" class=\"btn btn-success\" onclick=\"window.open('sale.jsp')\">选座购票</button>";
                 tr.appendChild(td0);
