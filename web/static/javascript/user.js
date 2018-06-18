@@ -1,48 +1,77 @@
 'use strict'
 let number = 0;
+var each_nums = 0;
+// function check1() {
+//     let pass = document.getElementById('pass').value;
+//     let a = /^[0-9a-zA-Z]{6,20}$/.test(pass);
+//     if(!a){
+//         document.getElementById('err1').innerHTML = '密码需要6～20位的任意字母和数字组合'
+//         return false;
+//     }else{
+//         document.getElementById('err').innerHTML = '';
+//         return true;
+//     }
+// }
 function check(){
     let pass = document.getElementById('pass').value;
     let passAgain = document.getElementById('passAgain').value;
-    let a = /^[0-9]{6,20}$/.test(pass);
+    let a = /^[0-9a-zA-Z]{6,20}$/.test(pass);
     //let b = /^[a-zA-Z0-9]{6,20}$/.test(passAgain);
     if(pass == passAgain){
         if(!a){
-            // document.getElementById('err').innerHTML = '密码需要6～20位的任意字母和数字组合'
+            document.getElementById('err').innerHTML = '密码需要6～20位的任意字母和数字组合'
             return false;
         }else{
-            // document.getElementById('err').innerHTML = '';
+            document.getElementById('err').innerHTML = '';
             return true;
         }
     }else{
-        // document.getElementById('err').innerHTML = '两次输入的密码不一致';
+        document.getElementById('err').innerHTML = '两次输入的密码不一致';
         return false;
     }
 }
-//
-// function check1() {
-//     var sss = document.getElementById('studioState');
-//     var reg=/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/;
-//     if(! reg.test(sss.value)) {
-//         document.getElementById('email_err').innerHTML = '邮箱格式不正确';
-//         return false;
-//     }else {
-//         return true;
-//     }
-// }
-//
-// function check2(){
-//     var sss = document.getElementById('studioIntroduction');
-//     var reg= /^((0\d{2,3}-\d{7,8})|(1[3584]\d{9}))$/;
-//     if(! reg.test(sss.value)) {
-//         document.getElementById('phone_err').innerHTML = '手机号格式不正确';
-//         return false;
-//     }else {
-//         return true;
-//     }
-// }
+function check1() {
+    var pass_a = document.getElementById('user_pass').value;
+    var pass_b = document.getElementById('user_passA').value;
+    var aa = /^[0-9a-zA-Z]{6,20}$/.test(pass_a);
+    if (pass_a!=pass_b){
+        document.getElementById('err1').innerHTML = '两次输入的密码不一致';
+        return false
+
+    }else {
+        if (!aa){
+            document.getElementById('err1').innerHTML = '密码需要6～20位的任意字母和数字组合'
+            return false;
+        }else {
+            document.getElementById('err1').innerHTML = '';
+            return true;
+        }
+    }
+}
+
+function getUserCount() {
+    let xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200){
+            let res = JSON.parse((xhr.responseText));
+            if (res.status == false){
+                alert("获取登录用户失败");
+            }else {
+                var userCount = res.object.length;
+                console.log("登录用户总数:"+userCount);
+                var pagesCount = Math.ceil(userCount/each_nums);
+                var pages = document.getElementById("pages");
+                pages.innerText = "共"+pagesCount+"页";
+                console.log("登录用户的总页数："+pagesCount);
+            }
+        }
+    };
+    xhr.open('GET','/api/user');
+    xhr.send();
+}
 //显示所有信息
 function get_user() {
-    let each_nums = document.getElementById('each_nums').value;
+    each_nums = document.getElementById('each_nums').value;
     let now_page = document.getElementById('now_page').innerText;
     let user_no = document.getElementById('user_no').value;
     let xhr = new XMLHttpRequest();
@@ -61,23 +90,25 @@ function get_user() {
             for(let i = 0;i<json.length;i++){
                 let tr = document.createElement('tr');
                 let td0 = document.createElement('td');
-                td0.innerText = json[i][0];
+                td0.innerText = json[i][3];
                 // td0.setAttribute('style','display: none;');
                 let td1 = document.createElement('td');
-                td1.innerText = json[i][1];
+                td1.innerText = json[i][0];
                 let td2 = document.createElement('td');
+                td2.innerText = json[i][1];
+                let td3 = document.createElement('td');
                 if(json[i][2] == 1){
-                    td2.innerText = "管理员";
+                    td3.innerText = "管理员";
                 }else if(json[i][2] == 0){
-                    td2.innerText = "经理";
+                    td3.innerText = "经理";
                 }else {
-                    td2.innerHTML = "售票员";
+                    td3.innerHTML = "售票员";
                 }
 
                 tr.appendChild(td0);
                 tr.appendChild(td1);
                 tr.appendChild(td2);
-
+                tr.appendChild(td3);
                 tbody.appendChild(tr);
             }
 
@@ -103,15 +134,19 @@ function other_page(offset) {
 //添加登录用户
 function addUser() {
     //alert("34234");
-    let user_no = document.getElementById('user_name').value;
+    // let user_no = document.getElementById('user_name').value;
+    let empName = document.getElementById('empName');
+    let indexeN = empName.selectedIndex;
+    let emp_no = empName.options[indexeN].value;
     let job = document.getElementById('Job');
     let indexJob = job.selectedIndex;
     let type = job.options[indexJob].value;
     if (type == 'manager'){
         type =1;
-    }else {
+    }else if (type == 'saler'){
+        type = -1;
+    }else
         type = 0;
-    }
     let user_pass = document.getElementById('pass').value;
     // alert(user_pass);
     let passAgain = document.getElementById('passAgain').value;
@@ -130,21 +165,27 @@ function addUser() {
             let json = JSON.parse(xml.responseText);
             if (json.state) {
                 get_user();
+                getUserCount();
+                window.location.href = 'http://localhost:9999/admin/user.jsp';
+
             } else {
                 alert("失败，请重试！");
             }
         }
     };
-        let sss = window.location.search;
-        let method = 'POST';
-        let data = 'emp_no='+user_no+'&emp_pass='+user_pass+'&type='+type+'&head_path='+head_path;
-        console.log(data);
-        xml.open(method,'/api/user');
-        xml.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-        xml.send(data);
+    let sss = window.location.search;
+    let method = 'POST';
+    let data = 'emp_no='+emp_no+'&emp_pass='+user_pass+'&type='+type+'&head_path='+head_path;
+    xml.open(method,'/api/user');
+    xml.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xml.send(data);
 }
 
-
+function reset_get() {
+    document.getElementById('now_page').innerText = '1';
+    get_user();
+    getUserCount();
+}
 //鼠标点击事件
 function studioRow(obj) {
     let table = document.getElementById('loginUser');
@@ -176,7 +217,6 @@ function studioRow(obj) {
         else{
             curRow.setAttribute('class','info');
             num = curRow.rowIndex ;
-            //console.log(num);
             number = num;
         }
     }
@@ -187,7 +227,7 @@ function studioRow(obj) {
 function deleteRow(row) {
     let deleteRow = document.getElementById('loginUser');
     //let length = deleteRow.rows.length;
-        deleteRow.deleteRow(row);
+    deleteRow.deleteRow(row);
 
 }
 
@@ -197,7 +237,6 @@ function removeUser() {
     if(row == 0){
         // alert("请选择需要删除的地方")
         // alert(row);
-        console.log('aaa');
         let changeButton = document.getElementById('deleteStudio');
         changeButton.setAttribute('data-toggle', 'modal');
         changeButton.setAttribute('data-target', '#error');
@@ -207,17 +246,19 @@ function removeUser() {
     else{
         let user = [];
         user = changeRow(row);
-        let emp_no = user[0];
-        // alert(emp_no);
+        let emp_no = user[1];
+        console.log(user);
         let xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function () {
-          if(xhr.readyState == 4 && xhr.status == 200){
-              if (JSON.parse(xhr.responseText).status){
-                  get_user();
-              }else {
-                  alert("删除失败");
-              }
-          }
+            if(xhr.readyState == 4 && xhr.status == 200){
+                if (JSON.parse(xhr.responseText).status){
+                    get_user();
+                    getUserCount();
+                    window.location.href = 'http://localhost:9999/admin/user.jsp';
+                }else {
+                    alert("删除失败");
+                }
+            }
         };
         xhr.open('DELETE','/api/user');
         xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
@@ -258,22 +299,24 @@ function change() {
         change[2] = document.getElementById('user_pass').value;
         change[3] = document.getElementById('user_passA').value;
 
-        console.log(array[1]);
+        console.log(array);
         //设置所选中的性别为默认
-        if(array[2] == '超级管理员'){
+        if(array[3] == '经理'){
+            document.getElementById('changeJob').value = 'boss';
+        }else if(array[3] == '管理员'){
             document.getElementById('changeJob').value = 'manager';
-        }else if(array[2] == '普通管理员'){
+        }else {
             document.getElementById('changeJob').value = 'sealer';
         }
         document.getElementById('changeName').value = array[0];
-        document.getElementById('user_pass').value = array[1];
-        document.getElementById('user_passA').value = array[1];
+        document.getElementById('user_pass').value = array[2];
+        document.getElementById('user_passA').value = array[2];
         // alert("array[0]:"+array[0]+"array[1]:"+array[1]+"array[2]:"+array[2] +"array[3]:"+array[3]);
         // alert(array[3])
         change[0] = array[0];
-        // arry[1]为密码
-        change[2] = array[1];
-        change[3] = array[1];
+        // array[2]为密码
+        change[2] = array[2];
+        change[3] = array[2];
         // alert(change[2]);
         // console.log(change);
         return change;
@@ -291,22 +334,25 @@ function change() {
 
 //获取修改框中的信息
 function putUser() {
-    let emp_no = document.getElementById('changeName').value;
+    let array = [];
+    array = changeRow(number);
+    console.log(array);
+    let emp_no =array[1];
     let emp_pass = document.getElementById("user_pass").value;
-    // alert(emp_pass);
     let job = document.getElementById("changeJob");
     let index = job.selectedIndex;
     let type = job.options[index].value;
     // alert(type);
     if(type == "manager"){
         type = 1;
-    }else{
+    }else if (type == 'boss'){
         type = 0;
+    }else {
+        type = -1;
     }
     // alert(type);
     let head_path = "";
-    // alert("user_no: "+emp_no+"type:"+type+"user_pass"+emp_pass+"head_path:"+head_path+"ddfd");
-    if(check() && check1() && check2()){
+    if(check1()){
 
     }else {
         alert("格式输入有误！");
@@ -314,14 +360,17 @@ function putUser() {
     }
     let xml = new XMLHttpRequest();
     xml.onreadystatechange = function () {
-      if(xml.readyState == 4 && xml.status == 200){
-          let json = JSON.parse(xml.responseText);
-          if(json.state){
-              get_user();
-          }else{
-              alert("失败，请重试！");
-          }
-      }
+        if(xml.readyState == 4 && xml.status == 200){
+            let json = JSON.parse(xml.responseText);
+            if(json.state){
+                get_user();
+                getUserCount();
+                // window.location.href = 'http://localhost:9999/admin/user.jsp';
+
+            }else{
+                alert("失败，请重试！");
+            }
+        }
     };
     let sss = window.location.search;
     let method = 'PUT';
@@ -330,5 +379,4 @@ function putUser() {
     xml.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     xml.send(data);
 }
-
 

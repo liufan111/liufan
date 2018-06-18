@@ -72,7 +72,7 @@ public class employeeServer extends HttpServlet {
             }
             Employee emp = DAOFactory.creatEmployeeDAO().findEmployeeById(id);
             if(emp != null){
-                json.put("status",false);
+                json.put("status",true);
                 jsonArr = new JSONArray();
                 jsonArr.add(String.valueOf(emp.getEmp_id()));
                 jsonArr.add(emp.getEmp_no());
@@ -85,7 +85,25 @@ public class employeeServer extends HttpServlet {
                 json.put("status",false);
             }
             out.write(json.toString());
-        }else {
+        }else if (request.getParameter("emp_no") != null){
+            System.out.println(request.getParameter("emp_no"));
+            try {
+                emp_no = request.getParameter("emp_no");
+            }catch (Exception e){
+                json.put("state",false);
+                out.write(json.toString());
+                return;
+            }
+            Employee employee = DAOFactory.creatEmployeeDAO().findEmployeeByNo(emp_no);
+            if (employee!=null){
+                json.put("status",false);
+                out.write(json.toString());
+            }else {
+                json.put("status",true);
+                out.write(json.toString());
+            }
+        }
+        else {
             try {
                 page = Integer.valueOf(request.getParameter("page"));
             }catch (java.lang.Exception e){

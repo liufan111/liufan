@@ -1,0 +1,51 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+#table{
+    text-align: center;
+
+}
+
+
+.aaa{
+    overflow: hidden;
+}
+
+.ttt{
+    /*background: #1b6d85;*/
+    height: 50px;
+    width: 300px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+}
+
+.aaa ul{
+    margin: 20px;
+}
+
+.aaa li{
+    list-style: none;
+    font-size: 16px;
+    line-height: 16px;
+    color: #8c8c8c;
+}
+
+#deletePlay{
+    margin-top: 200px;
+    margin-left: 4px;
+    /*position: absolute;*/
+    /*bottom: 20px;*/
+}
+#changePlay{
+    margin-top: 200px;
+    margin-left: 10px;
+}
+#changeplayImage{
+    margin-top: 200px;
+    margin-left: 10px;
+}

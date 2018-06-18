@@ -15,19 +15,16 @@ import java.util.ArrayList;
  */
 public class StudioDAO implements IStudio {
     @Override
-    public boolean insert(Studio studio) {
-        boolean result = false;
-
+    public int insert(Studio studio) {
+        int result = -1;
         if(studio == null)
             return result;
-
         // 获取Connection
         Connection con = ConnectionManager.getInstance().getConnection();
         PreparedStatement pstmt = null;
-        try
-        {
+        try {
             String sql = "insert into studio(studio_name, studio_row_count, studio_col_count, studio_introduction, studio_flag) values(?,?,?,?,?)";
-            pstmt = con.prepareStatement(sql);
+            pstmt = con.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, studio.getStudio_name());
             pstmt.setInt(2, studio.getStudio_row_count());
             pstmt.setInt(3, studio.getStudio_col_count());
@@ -35,7 +32,12 @@ public class StudioDAO implements IStudio {
             pstmt.setInt(5, studio.getStudio_flag());
 
             pstmt.executeUpdate();
-            result = true;
+            ResultSet rs = pstmt.getGeneratedKeys();
+            if (rs.next()) {
+                int id = rs.getInt(1);
+                result = id;
+                System.out.println ("生成记录的key为 ：" + id);
+            }
         }
         catch(Exception e)
         {
@@ -97,7 +99,7 @@ public class StudioDAO implements IStudio {
             pstmt.setString(4, studio.getStudio_introduction());
             pstmt.setInt(5, studio.getStudio_flag());
             pstmt.setInt(6, studio.getStudio_id());
-
+            System.out.println(pstmt.toString());
             pstmt.executeUpdate();
             result = true;
         }
@@ -122,7 +124,7 @@ public class StudioDAO implements IStudio {
         ResultSet rs = null;
         try
         {
-            // 获取所有用户数据
+            // 获取所有数据
             pstmt = con.prepareStatement("select * from studio where studio_id = ?");
             pstmt.setInt(1,id);
             rs = pstmt.executeQuery();

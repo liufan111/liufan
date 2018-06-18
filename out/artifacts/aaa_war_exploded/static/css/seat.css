@@ -3,50 +3,47 @@
     padding: 0;
 }
 
-.oneDiv{
-    margin: 10px;
-    width: 52px;
-    height: 32px;
+#seat{
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.div1{
+    overflow: hidden;
+}
+
+.oneSeat{
     float: left;
 }
 
-#modal{
-    margin-top: 80px;
-}
-
-#seat{
-    width: 620px;
-    /*height: 900px;*/
+#screen{
+    width:160px;
+    margin: 0 auto;
 }
 
 #screen img{
-    margin-left: 200px;
+    /*margin-left: 200px;*/
+    margin: 0 auto;
 }
 
 #screen p{
-    margin-left: 260px;
+    /*margin-left: 260px;*/
     font-size: 18px;
     color: #8fa1c7;
+    text-align: center;
 }
 
 #icon{
-    padding-left: 100px;
-    padding-top: 310px;
-
+    position: fixed;
+    right: 100px;
+    bottom: 20px;
 }
 
-.active{
-    padding-left: 2px;
-}
-
-li{
-    height: 35px;
-    line-height: 35px;
+#icon li {
     list-style: none;
-    color: #5bc0de;
 }
-/*#One12{*/
-    /*float: left;*/
-/*}*/
 
+.number{
+    display: block;
+}
 

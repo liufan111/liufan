@@ -1,16 +1,9 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: 刘凡
-  Date: 2018/6/6
-  Time: 11:29
-  To change this template use File | Settings | File Templates.
---%>
-<!--<%@ page pageEncoding="UTF-8" isErrorPage="false" errorPage="/error.jsp"%>-->
+<!--<%@ page pageEncoding="UTF-8" isErrorPage="false" errorPage="error.jsp"%>-->
 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>售票员个人信息</title>
+    <title>座位管理</title>
     <link rel="stylesheet" href="/static/css/aboutMe.css">
     <link rel="stylesheet" type="text/css" href="/static/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
@@ -43,31 +36,31 @@
             <div id = "img"></div>
         </div>
         <div class="col-md-9" id = "message">
-            <div id = "info">
-                <table class="table table-hover" id = "table">
-                    <tbody>
-                    <tr>
-                        <td>员工编号</td>
-                    </tr>
-                    <tr>
-                        <td>员工姓名</td>
-                    </tr>
-                    <tr>
-                        <td>员工住址</td>
-                    </tr>
-                    <tr>
-                        <td>员工邮箱</td>
-                    </tr>
-                    <tr>
-                        <td>联系方式</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+           <div id = "info">
+               <table class="table table-hover" id = "table">
+                   <tbody>
+                   <tr>
+                       <td>员工编号</td>
+                   </tr>
+                   <tr>
+                       <td>员工姓名</td>
+                   </tr>
+                   <tr>
+                       <td>员工住址</td>
+                   </tr>
+                   <tr>
+                       <td>员工邮箱</td>
+                   </tr>
+                   <tr>
+                       <td>联系方式</td>
+                   </tr>
+                   </tbody>
+               </table>
+           </div>
         </div>
     </div>
     <!-- 按钮触发模态框 -->
-    <button class="btn btn-info btn-lg" data-toggle="modal" data-target="#head_path" onclick="butPath()">
+    <button class="btn btn-default navbar-btn" data-toggle="modal" data-target="#head_path">
         修改头像
     </button>
     <!-- 模态框（Modal） -->
@@ -83,27 +76,31 @@
                     </h4>
                 </div>
                 <div class="modal-body">
-                    <form action="upload.jsp" method="post" enctype="multipart/form-data">
+                    <form action="/api/new_head" method="post" enctype="multipart/form-data" onsubmit="return upload()">
+
 
                         上传的图片:
-                        <input type="file" name="pic">
-                        <input type="submit" value="上传">
+                        <input type="file" id = 'file' name = 'head' onchange="upload()">
+                        <ul style="color: red" id = 'file_error'></ul>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                            </button>
+                            <input type="submit"  class="btn btn-primary" value="上传">
+                            <%--<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="changePath()">--%>
+                                <%--提交更改--%>
+                            <%--</button>--%>
+                        </div>
 
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                    </button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="changePath()">
-                        提交更改
-                    </button>
-                </div>
+
             </div><!-- /.modal-content -->
         </div><!-- /.modal -->
     </div>
     <!-- 按钮触发模态框 -->
-    <button class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" onclick="butInfo()">
-        修改个人信息
+    <button class="btn btn-default navbar-btn" data-toggle="modal" data-target="#myModal" onclick="butInfo()">
+                修改个人信息
     </button>
     <!-- 模态框（Modal） -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -144,4 +141,3 @@
     account();
 </script>
 </html>
-

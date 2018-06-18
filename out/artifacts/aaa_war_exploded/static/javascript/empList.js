@@ -2,9 +2,30 @@
  * Created by zxw on 17-12-19.
  */
 'use strict';
-
+var each_nums = 0;
+//获取登录用户的页数
+function getEmpCount() {
+    let xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200){
+            let res = JSON.parse((xhr.responseText));
+            if (res.status == false){
+                alert("获取员工用户失败");
+            }else {
+                var empCount = res.object.length;
+                console.log("员工总数："+empCount);
+                var pagesCount = Math.ceil(empCount/each_nums);
+                var pages = document.getElementById("pages");
+                pages.innerText = "共"+pagesCount+"页";
+                console.log("登录用户的总页数："+pagesCount);
+            }
+        }
+    };
+    xhr.open('GET','/api/employee');
+    xhr.send();
+}
 function get_emp() {
-    let each_nums = document.getElementById('each_nums').value;
+    each_nums = document.getElementById('each_nums').value;
     let now_page = document.getElementById('now_page').innerText;
     let emp_name = document.getElementById('employee_name').value;
     let xhr = new XMLHttpRequest();
@@ -67,6 +88,7 @@ function other_page(offset) {
 function reset_get() {
     document.getElementById('now_page').innerText = '1';
     get_emp();
+    getEmpCount()
 }
 
 
@@ -79,13 +101,17 @@ function del_studio() {
     xhr.onreadystatechange = function () {
         if(xhr.readyState == 4 && xhr.status == 200){
             if(JSON.parse(xhr.responseText).status){
-                get_studio();
+                alert("aaaaaaaaaaaaaaaaaaa");
+                get_emp();
+                getEmpCount();
+                window.location.href = 'http://localhost:9999/admin/employee.jsp?';
+
             }else{
                 alert("删除失败！");
             }
         }
     };
-    xhr.open('DELETE','/api/studio');
+    xhr.open('DELETE','/api/employee');
     xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     xhr.send('id='+id);
 }

@@ -6,7 +6,7 @@ function message(url) {
             let top = document.getElementById("img");
             if(json.login == true){
                 let head = document.createElement('img');
-                if(json.head_path === '' || json.head_path === null){
+                if(json.head_path === ''){
                     head.setAttribute("src","/static/image/user.jpg");
                 }else{
                     head.setAttribute('src',json.head_path);

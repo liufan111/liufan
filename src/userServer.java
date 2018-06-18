@@ -1,6 +1,7 @@
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import sss.idao.DAOFactory;
+import sss.model.EmpUser;
 import sss.model.Employee;
 import sss.model.User;
 
@@ -68,7 +69,6 @@ public class userServer extends HttpServlet {
                 return;
             }
             User user = DAOFactory.createUserDAO().findUserById(id);
-//            User user = DAOFactory.createUserDAO().findUserById(id);
             if(user != null){
                 json.put("status",false);
                 jsonArr = new JSONArray();
@@ -92,29 +92,28 @@ public class userServer extends HttpServlet {
 
             }
             int offset = (page-1) * nums;
-            ArrayList<User> list = null;
+            ArrayList<EmpUser> list = null;
             String name = request.getParameter("name");
             System.out.println(name+1);
             if(name == null || name.equals("")){
-                System.out.println(name+"rtytrfg");
                 list = DAOFactory.createUserDAO().findUserAll(offset,nums);
-                System.out.println(name+"34343344343");
+
             }
             else{
-//                list = DAOFactory.createUserDAO().findUserById(name);
-//                System.out.println(name);
+                list = DAOFactory.createUserDAO().findUserByName(name,offset,nums);
+                System.out.println(name);
             }
             if (list.size() == 0){
                 json.put("status",false);
                 out.write(json.toString());
                 return;
             }
-            for (User user : list
-                    ){
+            for (EmpUser user : list){
                 jsonArr = new JSONArray();
                 jsonArr.add(user.getEmp_no());
                 jsonArr.add(user.getEmp_pass());
                 jsonArr.add(user.getType());
+                jsonArr.add(user.getEmp_name());
                 all.add(jsonArr);
             }
             json.put("status",true);
@@ -136,7 +135,7 @@ public class userServer extends HttpServlet {
 
         }
         data = data.substring(0,data.length()-1);
-        System.out.println(data+"adfdfdfdfdfdfddfdfdfd");
+        System.out.println(data);
         HashMap<String,String> hm = new HashMap<String,String>();
         try {
             String listp[] = data.split("&");
@@ -149,7 +148,7 @@ public class userServer extends HttpServlet {
         }
         try {
             id = hm.get("id");
-            System.out.println(id+"aaaaaaaaaaaaaaaaaaaaaa");
+            System.out.println(id);
         }
         catch (java.lang.Exception e){
             System.out.print("err");

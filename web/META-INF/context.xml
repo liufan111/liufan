@@ -20,7 +20,7 @@
             maxIdle="30"
             maxWaitMillis="10000"
             username="root"
-            password="zxwzxwzxw"
+            password="wyrwyrwyr"
             driverClassName="com.mysql.jdbc.Driver"
-            url="jdbc:mysql://localhost:3306/TTMS?useUnicode=true&amp;characterEncoding=utf-8" />
+            url="jdbc:mysql://localhost:3306/ttms?useUnicode=true&amp;characterEncoding=utf-8" />
 </Context>

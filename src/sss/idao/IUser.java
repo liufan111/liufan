@@ -1,6 +1,7 @@
 package sss.idao;
 
 
+import sss.model.EmpUser;
 import sss.model.Employee;
 import sss.model.User;
 
@@ -20,11 +21,19 @@ public interface IUser {
     public boolean update(User user);
 
     // 查所有用户(一般用于和界面交互)
-    public ArrayList<User> findUserAll(int offset, int nums);
+    public ArrayList<EmpUser> findUserAll(int offset, int nums);
+
+    //模糊查找
+    public ArrayList<EmpUser> findUserByName(String userName,int offset,int nums);
 
     public User findUserById(String emp_no);
 
-    User findUserByNo(String name);
+    public User findUserByNo(String name);
+
+    //查找不在登录表里面的员工
+    public ArrayList<EmpUser> findEmpnotinUser();
+
+    public ArrayList<User> findUserShoupiao();
 
 
 //    public Employee findEmployeeByNo(String emp_no);

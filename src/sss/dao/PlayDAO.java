@@ -54,6 +54,7 @@ public class PlayDAO implements IPlay {
 
         @Override
         public boolean delete(int play_id) {
+            //System.out.println("删除开始");
             boolean result = false;
             if(play_id <= 1)
                 return result;
@@ -62,8 +63,9 @@ public class PlayDAO implements IPlay {
             PreparedStatement pstmt = null;
             try
             {
-                // 删除子某个用户
+                // 删除子某个剧目
                 String sql = "delete from play where play_id=?";
+                System.out.println("id:"+play_id);
                 pstmt = con.prepareStatement(sql);
                 pstmt.setInt(1, play_id);
                 pstmt.executeUpdate();
@@ -102,6 +104,7 @@ public class PlayDAO implements IPlay {
                 pstmt.setInt(6,play.getPlay_length());
                 pstmt.setBigDecimal(7,play.getPlay_ticket_price());
                 pstmt.setInt(8,play.getPlay_status());
+                pstmt.setInt(9,play.getPlay_id());
 
                 pstmt.executeUpdate();
                 result = true;
@@ -143,7 +146,7 @@ public class PlayDAO implements IPlay {
                     p.setPlay_image(rs.getString("play_image"));
                     p.setPlay_length(rs.getInt("play_length"));
                     p.setPlay_ticket_price(rs.getBigDecimal("play_ticket_price"));
-                    p.setPlay_status(rs.getInt("play-status"));
+                    p.setPlay_status(rs.getInt("play_status"));
 
                 }
             }
@@ -159,7 +162,7 @@ public class PlayDAO implements IPlay {
         }
 
 
-        @Override
+    @Override
         public ArrayList<Play> findPlayAll(int offset, int nums) {
             ArrayList<Play> list = new ArrayList<Play>();
             Play info = null;
@@ -189,6 +192,7 @@ public class PlayDAO implements IPlay {
                     info.setPlay_status(rs.getInt("play_status"));
                     // 加入列表
                     list.add(info);
+                    //System.out.println(list+"查找");
                 }
             }
             catch(Exception e)

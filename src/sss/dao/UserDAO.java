@@ -2,6 +2,7 @@ package sss.dao;
 
 import sss.ConnectionManager;
 import sss.idao.IUser;
+import sss.model.EmpUser;
 import sss.model.Employee;
 import sss.model.User;
 
@@ -113,9 +114,9 @@ public class UserDAO implements IUser{
     }
 
     @Override
-    public ArrayList<User> findUserAll(int offset, int nums) {
-        ArrayList<User> list = new ArrayList<User>();
-        User info = null;
+    public ArrayList<EmpUser> findUserAll(int offset, int nums) {
+        ArrayList<EmpUser> list = new ArrayList<EmpUser>();
+        EmpUser info = null;
 
         Connection con = ConnectionManager.getInstance().getConnection();
         PreparedStatement pstmt = null;
@@ -123,16 +124,17 @@ public class UserDAO implements IUser{
         try
         {
             // 获取所有用户数据
-            pstmt = con.prepareStatement("select * from user limit ? , ?");
+            pstmt = con.prepareStatement("select * from employee inner join user on user.emp_no = employee.emp_no limit ? , ?");
             pstmt.setInt(1,offset);
             pstmt.setInt(2,nums);
             rs = pstmt.executeQuery();
             while(rs.next())
             {
-                info = new User();
+                info = new EmpUser();
                 info.setEmp_no(rs.getString("emp_no"));
                 info.setEmp_pass(rs.getString("emp_pass"));
                 info.setType(rs.getInt("type"));
+                info.setEmp_name(rs.getString("emp_name"));
                 // 加入列表
                 list.add(info);
             }
@@ -220,5 +222,95 @@ public class UserDAO implements IUser{
         }
     }
 
+    @Override
+    public ArrayList<EmpUser> findUserByName(String userName,int offset,int nums){
+        System.out.println("需要模糊查找的用户名:"+userName);
+        if (userName == null || userName.equals(""))
+            return null;
+        ArrayList<EmpUser> list = new ArrayList<EmpUser>();
+        EmpUser info = null;
+        Connection con = ConnectionManager.getInstance().getConnection();
+        PreparedStatement pstmt = null;
+        try {
+            String sql = "select * from employee inner join user on user.emp_no = employee.emp_no where emp_name like ? limit ? , ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1,  "%"+userName+"%");// 拼接模糊查询串
+            pstmt.setInt(2,offset);
+            pstmt.setInt(3,nums);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()){
+                info = new EmpUser();
+                info.setEmp_no(rs.getString("emp_no"));
+                info.setEmp_pass(rs.getString("emp_pass"));
+                info.setType(rs.getInt("type"));
+                info.setEmp_name(rs.getString("emp_name"));
+                list.add(info);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            ConnectionManager.close(null,pstmt,con);
+            return list;
+        }
+    }
+
+    @Override
+    public ArrayList<EmpUser> findEmpnotinUser(){
+        ArrayList<EmpUser> list = new ArrayList<EmpUser>();
+        EmpUser info = null;
+        Connection con = ConnectionManager.getInstance().getConnection();
+        PreparedStatement pstmt = null;
+        try {
+            String sql = "select * from employee where emp_no not in (select emp_no from user);";
+            pstmt = con.prepareStatement(sql);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()){
+                info = new EmpUser();
+                info.setEmp_no(rs.getString("emp_no"));
+                info.setEmp_name(rs.getString("emp_name"));
+                list.add(info);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            ConnectionManager.close(null,pstmt,con);
+            return list;
+        }
+    }
+    @Override
+    public ArrayList<User> findUserShoupiao(){
+        ArrayList<User> list = new ArrayList<User>();
+        User info = null;
+
+        Connection con = ConnectionManager.getInstance().getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try
+        {
+            // 获取所有用户数据
+            //where type = 1 为了方便不加这句
+            pstmt = con.prepareStatement("select * from user inner join employee on user.emp_no = employee.emp_no ");
+            rs = pstmt.executeQuery();
+            while(rs.next())
+            {
+                info = new User();
+                info.setEmp_no(rs.getString("emp_id"));
+                info.setEmp_pass(rs.getString("emp_name"));
+                info.setType(rs.getInt("type"));
+                info.setHead_path(rs.getString("head_path"));
+                // 加入列表
+                list.add(info);
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            ConnectionManager.close(rs, pstmt, con);
+            return list;
+        }
+    }
 
 }

@@ -21,37 +21,27 @@
 <body>
 <!--座位管理-->
 <jsp:include page="/me.jsp"></jsp:include>
-<div class="row container">
-    <!--需要操作的演出厅-->
-    <div class="col-md-3">
-        <ul class="nav nav-pills nav-stacked" id = "left">
-            <%--<li><a href="#">1号演出厅</a></li>--%>
-            <%--<li><a href="#">2号演出厅</a></li>--%>
-            <%--<li><a href="#">3号演出厅</a></li>--%>
-            <%--<li><a href="#">4号演出厅</a></li>--%>
-        </ul>
-    </div>
+<div>
 
     <!--对座位的管理操作-->
-    <div class="col-md-6">
+    <div id = "panter">
         <div id = "screen">
             <p>屏幕</p>
             <img src="/static/image/rectangle.png" alt="">
         </div>
-        <div id = "seat" ></div>
+        <div id = "seat"></div>
 
     </div>
-    <div class="col-md-3">
-        <!--图标说明-->
-        <div id = "icon">
-            <ul>
-                <li class="active">图标说明</li>
-                <li>选中座位 <img src="/static/image/select.png" alt=""></li>
-                <li>座位正常 <img src="/static/image/seat.png" alt=""></li>
-                <li>座位坏掉 <img src="/static/image/broken.png" alt=""></li>
-                <li>改为过道 <img src="/static/image/aisle.png" alt=""></li>
-            </ul>
-        </div>
+
+    <!--图标说明-->
+    <div id = "icon">
+        <ul>
+            <li class="active">图标说明</li>
+            <li>选中座位 <img src="/static/image/select.png" alt=""></li>
+            <li>座位正常 <img src="/static/image/seat.png" alt=""></li>
+            <li>座位坏掉 <img src="/static/image/broken.png" alt=""></li>
+            <li>改为过道 <img src="/static/image/aisle.png" alt=""></li>
+        </ul>
     </div>
 </div>
 
@@ -96,7 +86,11 @@
 
 </body>
 <script>
+    aa();
+    bb();
+
     // studioSeat();
-    createState()
+    // createState();
+
 </script>
 </html>

@@ -20,12 +20,11 @@
 </head>
 <body>
 <jsp:include page="/me.jsp"></jsp:include>
-<!--所有的演出厅-->
 <div id = "table">
         <table class="table table-striped " id = 'employee' onclick="studioRow(this)" style="text-align: center">
             <caption style="text-align: center">那一年影院人员</caption>
             <tr class="warning">
-                <td>登录帐号</td>
+                <td>员工编号</td>
                 <td>姓名</td>
                 <td>联系方式</td>
                 <td>住址</td>
@@ -40,7 +39,7 @@
 </div>
 <div style="margin:0px 30px;font-size: 18px;text-align: center">
     <button class="btn btn-default" onclick="other_page(-1)"><</button>
-    第<u id="now_page">1</u>页
+    第<u id="now_page">1</u>页/<sanp id = "pages"></sanp>
 
     <button class="btn btn-default"onclick="other_page(1)">></button>
     每页显示
@@ -63,7 +62,7 @@
         <button class="btn btn-default" onclick="reset_get()"><i class="fa fa-search" aria-hidden="true"></i>查找</button>
         <button class="btn btn-default navbar-btn" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus" aria-hidden="true"></i> 添加人员</button>
         <button class="btn btn-default navbar-btn" id = 'deleteStudio' onclick="removeEmployee()"><i class="fa fa-minus" aria-hidden="true"></i> 删除人员</button>
-        <button class="btn btn-default navbar-btn" data-toggle="modal" data-target="#myModals" id="changeEmp" onclick="change()"  ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> 修改人员信息</button>
+        <button class="btn btn-default navbar-btn" data-toggle="modal" data-target="#myModals" id="changeEmp" onclick="change()"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>修改人员信息</button>
     </div>
 
 
@@ -83,11 +82,11 @@
             </div>
             <div class="modal-body">
                 <form role="form">
-                    登录帐号：<input type="text" name = "emp_no" id="emp_no" class="form-control" placeholder="请输入登录帐号" required/><br>
-                    姓名：<input type="text" name = "emp_name" id="emp_name" class="form-control" placeholder="请输入需要添加的人员信息" required/><br>
-                    手机号：<input type="text" name="emp_tel_num" id = "emp_tel_num" class="form-control" placeholder="请输入新用户的手机号" onblur="check2()" required/><span id = 'phone_err'></span>
-                    住址：<input type="text" name = "emp_addr" id = "emp_addr" class="form-control" placeholder="请输入用户住址" required><br>
-                    邮箱：<input type="text" name ="emp_email" id = "emp_email" class="form-control" placeholder="请输入新用户的邮箱" onblur="check1()" required/><span id = 'email_err'></span><br>
+                    员工编号：<input type="text" name = "emp_no" id="emp_no" class="form-control" placeholder="请输入员工编号" onblur="getEmpNo()" ><span id = "emp_err"></span><br>
+                    姓名：<input type="text" name = "emp_name" id="emp_name" class="form-control" placeholder="请输入需要添加的人员姓名" onblur="check3()"><span id = "name_err"></span><br>
+                    手机号：<input type="text" name="emp_tel_num" id = "emp_tel_num" class="form-control" placeholder="请输入新用户的手机号" onblur="check2()"><span id = 'phone_err'></span><br>
+                    住址：<input type="text" name = "emp_addr" id = "emp_addr" class="form-control" placeholder="请输入用户住址" ><br>
+                    邮箱：<input type="text" name ="emp_email" id = "emp_email" class="form-control" placeholder="请输入新用户的邮箱" onblur="check1()" ><span id = 'email_err'></span><br>
 
                 </form>
                 <div class="modal-footer">
@@ -115,9 +114,9 @@
                 <form role="form" id = "change">
                     用户登录id：<input type="text" name = "emp_no" class="form-control" id = "changeno" disabled/><br>
                     用户姓名：<input type="text" name = "emp_name" class="form-control" id = "changeName" disabled/><br>
-                    修改手机号: <input type="text" name="emp_tel_num"  class="form-control" id = 'changeTel'/></br>
-                    修改住址：<input type="text" name = "emp_addr" id = "changeAddr" class="form-control" required/><br>
-                    修改邮箱：<input type="text" name="emp_email"  id = 'changeEmail' class="form-control"  required/><br>
+                    修改手机号: <input type="text" name="emp_tel_num"  class="form-control" id = 'changeTel' onblur="check4()"/><span id = "change_tel_err"></span></br>
+                    修改住址：<input type="text" name = "emp_addr" id = "changeAddr" class="form-control" ><br>
+                    修改邮箱：<input type="text" name="emp_email"  id = 'changeEmail' class="form-control" onblur="check5()"/><span id = "change_email_err"></span><br>
                     <!--<input type="submit" class="btn btn-primary "  onclick="add()">-->
                 </form>
                 <div class="modal-footer">
@@ -134,9 +133,6 @@
 <div class="modal fade" id="error" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="alert alert-warning">
-            <a href="#" class="close" data-dismiss="alert">
-                &times;
-            </a>
             <strong>警告</strong><p id = 'waring'></p>
         </div>
     </div><!-- /.modal -->
@@ -144,5 +140,6 @@
 </body>
 <script>
     get_emp();
+    getEmpCount()
 </script>
 </html>

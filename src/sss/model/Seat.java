@@ -33,7 +33,7 @@ public void setStudio_id(int studio_id){
     this.studio_id = studio_id;
 }
 public void setSeat_row(int seat_row){
-    this.seat_id = seat_id;
+    this.seat_row = seat_row;
 }
 public void setSeat_column(int seat_column){
     this.seat_column = seat_column;

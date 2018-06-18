@@ -3,30 +3,35 @@
  */
 'use strict';
 let number = 0;
-// function check(){
-//     let pass = document.getElementById('pass').value;
-//     let passAgain = document.getElementById('passAgain').value;
-//     let a = /^[a-zA-Z0-9]{6,20}$/.test(pass);
-//     //let b = /^[a-zA-Z0-9]{6,20}$/.test(passAgain);
-//     if(pass == passAgain){
-//         if(!a){
-//             document.getElementById('err').innerHTML = '密码需要6～20位的任意字母和数字组合'
-//             return false;
-//         }else{
-//             document.getElementById('err').innerHTML = '';
-//             return true;
-//         }
-//     }else{
-//         document.getElementById('err').innerHTML = '两次输入的密码不一致';
-//         return false;
-//     }
-// }
-
+function getEmpNo() {
+    var emp_no = document.getElementById("emp_no").value;
+    var reg = /^[0-9]{6,20}/;
+    if (!reg.test(emp_no)){
+        document.getElementById("emp_err").innerText = '员工编号应为6～20位的数字';
+        return false;
+    }else {
+        let xml = new XMLHttpRequest();
+        xml.onreadystatechange = function () {
+            if (xml.readyState == 4 && xml.status == 200){
+                let json = JSON.parse(xml.responseText);
+                if (!json.status){
+                    document.getElementById("emp_err").innerText = '该员工编号已存在，请重试！';
+                    return false;
+                }else {
+                    document.getElementById("emp_err").innerText = '';
+                    return true;
+                }
+            }
+        };
+        xml.open('GET','/api/employee?emp_no='+emp_no);
+        xml.send();
+    }
+}
 function check1() {
-    var sss = document.getElementById('changeEmail');
+    // var sss = document.getElementById('changeEmail');
     var ssss = document.getElementById('emp_email');
     var reg=/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/;
-    if(! reg.test(sss.value) || ! reg.test(ssss.value)) {
+    if(! reg.test(ssss.value)) {
         document.getElementById('email_err').innerHTML = '邮箱格式不正确';
         return false;
     }else {
@@ -36,15 +41,53 @@ function check1() {
 
 function check2(){
     var sss = document.getElementById('emp_tel_num');
-    var ssss = document.getElementById('changeTel');
-    var reg= /^((0\d{2,3}-\d{7,8})|(1[3584]\d{9}))$/;
-    if(! reg.test(sss.value) || !reg.test(ssss.value)) {
+    // var ssss = document.getElementById('changeTel');
+    var reg= /^[0-9]{11}$/;
+    if(! reg.test(sss.value)) {
         document.getElementById('phone_err').innerHTML = '手机号格式不正确';
+        return false;
+    }else {
+        document.getElementById('phone_err').innerHTML = '';
+        return true;
+    }
+}
+
+function check3() {
+    var sss = document.getElementById("emp_name");
+    if (sss.value==''){
+        document.getElementById("name_err").innerText = '用户名必须填写';
+        return false;
+    }else {
+        document.getElementById("name_err").innerText = '';
+        return true;
+    }
+}
+
+function check4() {
+    var ssss = document.getElementById("changeTel");
+    var reg= /^[0-9]{11}$/;
+    if ( !reg.test(ssss.value)){
+        document.getElementById('change_tel_err').innerText = '修改的手机号格式不正确';
+        return false;
+    }else {
+        document.getElementById('change_tel_err').innerText = '';
+        return true;
+    }
+}
+
+function check5() {
+    var ssss = document.getElementById("changeEmail");
+    var reg=/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/;
+    if(! reg.test(ssss.value)) {
+        document.getElementById('change_email_err').innerHTML = '邮箱格式不正确';
         return false;
     }else {
         return true;
     }
+
 }
+
+
 
 //添加用户
 function addEmp() {
@@ -54,9 +97,9 @@ function addEmp() {
     let emp_name = document.getElementById('emp_name').value;
     let emp_tel_num = document.getElementById('emp_tel_num').value;
     let emp_addr = document.getElementById('emp_addr').value;
-    let emp_email = document.getElementById('emp_email').valie;
+    let emp_email = document.getElementById('emp_email').value;
 
-    if(check1() && check2()){
+    if(check1() && check2() && check3()){
 
     }else {
         alert("格式输入有误！");
@@ -69,6 +112,7 @@ function addEmp() {
             let json = JSON.parse(xml.responseText);
             if(json.state){
                 get_emp();
+                getEmpCount();
             }else {
                 alert("失败，请重试！");
             }
@@ -139,18 +183,17 @@ function removeEmployee() {
         changeButton.setAttribute('data-toggle', 'modal');
         changeButton.setAttribute('data-target', '#error');
         let text = document.getElementById('waring');
-        text.innerHTML = '请选择需要修改的地方！'
+        text.innerHTML = '请选择需要删除的地方！'
     }
     else{
         let emp = []
         emp = changeRow(row);
         let id = emp[0];
-        alert(id);
         let xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function () {
             if(xhr.readyState == 4 && xhr.status == 200){
                 if(JSON.parse(xhr.responseText).status){
-                    get_emp();
+                    window.location.href = 'http://localhost:9999/admin/employee.jsp';
                 }else {
                     alert("删除失败！");
                 }
@@ -179,7 +222,14 @@ function changeRow(number) {
 
 //将信息添加在修改信息的相应位置
 function change() {
-    if(number >0){
+    if (number == 0){
+        console.log('aaa');
+        let changeButton = document.getElementById('changeEmp');
+        changeButton.setAttribute('data-toggle', 'modal');
+        changeButton.setAttribute('data-target', '#error');
+        let text = document.getElementById('waring');
+        text.innerHTML = '请选择需要删除的地方！'
+    }else {
 
         let change = [];
         let aaa = [];
@@ -199,16 +249,9 @@ function change() {
         console.log(change);
         return aaa;
     }
-//当没有选中内容时
-    else{
-        let changeButton = document.getElementById('changeStudio');
-        changeButton.setAttribute('data-toggle', 'modal');
-        changeButton.setAttribute('data-target', '#error');
-        let text = document.getElementById('waring')
-        text.innerHTML = '请选择需要修改的地方！'
-    }
 
 }
+
 
 function putEmployee() {
     let aa = [];
@@ -220,7 +263,7 @@ function putEmployee() {
     let emp_tel_nums = document.getElementById("changeTel").value;
     let emp_addr = document.getElementById("changeAddr").value;
     let emp_email = document.getElementById("changeEmail").value;
-    if(check1() && check2()){
+    if(check4() && check5()){
 
     }else {
         alert("格式输入有误！");

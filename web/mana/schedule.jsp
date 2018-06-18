@@ -11,6 +11,7 @@
     <meta charset="UTF-8">
     <title>安排演出计划</title>
     <link rel="stylesheet" type="text/css" href="/static/font-awesome-4.7.0/css/font-awesome.min.css">
+    <%--<link rel="stylesheet" type="text/css" href="/static/css/schedule.css">--%>
     <link rel="stylesheet" type="text/css" href="/static/css/user.css">
     <script src="/static/javascript/schedule.js"></script>
     <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
@@ -18,6 +19,7 @@
     <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="/static/javascript/userMessage.js"></script>
     <script src="/static/javascript/readmessge.js"></script>
+    <script src="/static/My97DatePicker/WdatePicker.js"></script>
     <%--<script src="/static/javascript/message.js"></script>--%>
     <link rel="stylesheet" href="/static/css/me.css">
 
@@ -47,6 +49,7 @@
     <table class="table table-striped table-hover" id = 'schedule' onclick="scheduleRow(this)" >
         <caption style="text-align: center">演出计划</caption>
         <tr class="warning">
+            <td>演出计划ID</td>
             <td>演出厅</td>
             <td>剧目名称</td>
             <td>演出时间</td>
@@ -56,11 +59,11 @@
 
         </tbody>
     </table>
-
+    <div id="test1"></div>
 </div>
 <div style="margin:0px 30px;font-size: 18px;text-align: center">
     <button type = "button" class="btn btn-default navbar-btn"onclick="other_page(-1)"><</button>
-    第<u id="now_page">1</u>页
+    第<u id="now_page">1</u>页/<sanp id = "pages"></sanp>
 
     <button type = "button" class="btn btn-default navbar-btn"onclick="other_page(1)">></button>
     每页显示
@@ -79,11 +82,12 @@
             <input id="play_id" type="text" class="form-control" placeholder="查找剧目的演出计划">
         </div>
     </form>
+    <button type = "button" class="btn btn-default navbar-btn" onclick="reset_get()"><i class="fa fa-search" aria-hidden="true"></i>查找</button>
+    <button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus" aria-hidden="true"></i> 添加演出计划</button>
+    <button type="button" class="btn btn-default navbar-btn" id = 'deleteSchedule' onclick="removeSchedule()"><i class="fa fa-minus" aria-hidden="true"></i> 删除演出计划</button>
+    <button type="button" class="btn btn-default navbar-btn" id="changeSchedule"  onclick="change()"  data-toggle="modal" data-target="#myModals" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> 修改演出计划</button>
 
-    <button class="btn btn-default" onclick="reset_get()"><i class="fa fa-search" aria-hidden="true"></i> 查找</button>
-    <button class="btn btn-default navbar-btn" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus" aria-hidden="true"></i>添加演出计划</button>
-    <button class="btn btn-default navbar-btn" id='deleteSchedule' onclick="removeSchedule()"><i class="fa fa-minus" aria-hidden="true"></i>删除演出计划</button>
-    <button class="btn btn-defalut navbar-btn" id='changeSchedule' onclick="change()"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>修改演出计划</button>
+
 </div>
 
 <!--演出计划添加信息-->
@@ -98,29 +102,32 @@
                     添加演出计划
                 </h4>
             </div>
-            <div class="modal-body">
-                <form role="form">
+            <div class="modal-body" id="modal-body">
+                <form role="form" >
                     <%--剧目名称: <input type="text" name = "studioName" id="studioName" class="form-control" placeholder="请输入演出厅名称" onblur="check()" required/><br><span id = 'err'></span><br>--%>
-                        剧目名称：
+                        演出厅:
                         <div class="form-group">
-                                <select class="input-xlarge id=play_name">
-                                    <option>超时空同居</option>
-                                    <option>后来的我们</option>
-                                    <option>钢铁侠</option>
-                                    <option>奔跑吧</option>
-                                </select>
-                            </div>
-                    演出厅:
-                        <div class="form-group">
-                            <select class="input-xlarge id=studio_name">
-                                <option>1号厅</option>
-                                <option>2号厅</option>
-                                <option>3号厅</option>
-                                <option>4号厅</option>
+                            <select class="form-control"id="studio_name" >
+                               <%-- <option>1号厅</option>
+                                <option>2号厅</option>--%>
+                               <%-- <option>3号厅</option>
+                                <option>4号厅</option>--%>
                             </select>
                         </div>
-                    演出时间:<input type="text" class="layui-input" name="sched_time" id="sched_time" placeholder="yyyy-MM-dd HH:mm:ss"/><br>
-                    票价: <input type="text" name="sched_ticket_price" id = "sched_ticket_price" class="form-control" placeholder="票价"/><br>
+
+                        剧目名称：
+                        <div class="form-group">
+                                <select class="form-control" id="play_name" >
+                                   <%-- <option></option>
+                                    <option></option>
+                                    <option></option>
+                                    <option></option>--%>
+                                </select>
+                            </div>
+
+                    演出时间:<input id="sched_time" class="Wdate" type="text" onfocus="WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true,minDate:'%y-%M-%d',firstDayOfWeek:1})"><br>
+                        <%--<input type="text" class="form-control" name="sched_time" id="sched_time" placeholder="yyyy-MM-dd HH:mm:ss"/><br>--%>
+                    <%--票价: <input type="text" name="sched_ticket_price" id = "sched_ticket_price" class="form-control" placeholder="票价"/><br>--%>
                 </form>
                 <div class="modal-footer">
                     <button class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -145,27 +152,31 @@
                 </h4>
             </div>
             <div class="modal-body">
-                <form role="form" >
-                    剧目名称：
-                    <div class="form-group">
-                        <select class="input-xlarge id=change_play">
-                            <option>enter</option>
-                            <option>Your</option>
-                            <option>Options</option>
-                            <option>Here!</option>
-                        </select>
-                    </div>
+                <form role="form" id="change" >
+                    演出计划id:<input type="text" name = "sched_id" class="form-control" id = "change_id"  disabled ><br>
+
                     演出厅:
                     <div class="form-group">
-                        <select class="input-xlarge id=change_studio">
-                            <option>enter</option>
-                            <option>Your</option>
+                        <select class="form-control" id="change_studio"   >
+                            <%--<option>5号厅</option>--%>
+                            <%--<option>Your</option>
                             <option>Options</option>
-                            <option>Here!</option>
+                            <option>Here!</option>--%>
                         </select>
                     </div>
-                    演出时间:<input type="text" class="layui-input" name="sched_time" id="change_time" placeholder="yyyy-MM-dd HH:mm:ss">
-                    票价: <input type="text" name="sched_ticket_price" id = "change_price" class="form-control" placeholder="票价"/><br>
+                    剧目名称：
+                    <div class="form-group">
+                        <select class="form-control" id="change_play">
+                            <%--<option>南安那</option>--%>
+                            <%--<option>3</option>
+                            <option>Options</option>
+                            <option>Here!</option>--%>
+                        </select>
+                    </div>
+
+                    <%--演出时间:<input type="text" class="form-control" name="time" id="change_time" placeholder="yyyy-MM-dd HH:mm:ss:m">--%>
+                    演出时间:<input id="change_time" class="Wdate" type="text" onfocus="WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true,minDate:'%y-%M-%d',firstDayOfWeek:1})"><br>
+                    票价: <input type="text" name="sched_ticket_price" id = "change_price" class="form-control"  placeholder="票价" disabled/><br>
                 </form>
 
                 </form>
@@ -183,9 +194,9 @@
 <div class="modal fade" id="error" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="alert alert-warning">
-            <a href="#" class="close" data-dismiss="alert">
+            <%--<a href="#" class="close" data-dismiss="alert">
                 &times;
-            </a>
+            </a>--%>
             <strong>警告</strong><p id = 'waring'></p>
         </div>
     </div><!-- /.modal -->
@@ -200,8 +211,9 @@
         ,type: 'datetime'
     });*/
     get_schedule();
-
+    getScheduleCount();
     get_user_message('/me.jsp');
 
 </script>
+
 </html>

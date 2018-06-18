@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 public interface IStudio {
     // 增
-    public boolean insert(Studio studio);
+    public int insert(Studio studio);
 
     // 删
     public boolean delete(int studio_id);

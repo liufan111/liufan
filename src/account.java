@@ -53,12 +53,12 @@ public class account extends HttpServlet {
                     }
                     //经理访问的
                     else if (sate == 0){
-                        json.put("href","/mana/play.jsp");
-
+                        json.put("href","/mana/schedule.jsp");
+//                        json.put("href","/mana/easy/studio.jsp");
                     }
                     //售票员访问的
                     else {
-                        json.put("href","/seller/sale.jsp");
+                        json.put("href","/seller/playRoot.jsp");
                     }
 
                     request.getSession().invalidate();

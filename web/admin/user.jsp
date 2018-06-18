@@ -1,4 +1,4 @@
-<%@ page pageEncoding="UTF-8" isErrorPage="false" errorPage="/error.jsp"%>
+<%@ page pageEncoding="UTF-8" isErrorPage="false" errorPage="error.jsp"%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,30 +16,31 @@
 </head>
 <body>
 <div id="usermessage">
-<div id="header">
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
-            <ul class="nav nav-tabs" id = "navbar">
-                <li class="nav navbar-nav navbar-right" id = "logout"><a href="/out"><span><i class="fa fa-sign-out" aria-hidden="true"></i></span>退出登录</a></li>
-                <li class="nav navbar-nav navbar-right" id = "user"></li>
-                <li class="nav navbar-nav navbar-right" id = "name"></li>
-            </ul>
+    <div id="header">
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <ul class="nav nav-tabs" id = "navbar">
+                    <li class="nav navbar-nav navbar-right" id = "logout"><a href="/out"><span><i class="fa fa-sign-out" aria-hidden="true"></i></span>退出登录</a></li>
+                    <li class="nav navbar-nav navbar-right" id = "user"></li>
+                    <li class="nav navbar-nav navbar-right" id = "name"></li>
+                </ul>
 
-        </div>
-    </nav>
-</div>
+            </div>
+        </nav>
+    </div>
 </div>
 
-<!--所有的人员-->
+<!--所有的演出厅-->
 <div id = "table">
     <table class="table table-striped " id="loginUser" onclick="studioRow(this)">
         <caption style="text-align: center">那一年影院人员</caption>
-        <tr class="warning">
+        <tr class="warning" style="text-align: center">
+            <td>员工姓名</td>
             <td>登录帐号</td>
             <td>登录密码</td>
             <td>权限</td>
         </tr>
-        <tbody id = "tbody">
+        <tbody id = "tbody" style="text-align: center">
 
 
         </tbody>
@@ -47,9 +48,9 @@
 </div>
 
 <div style="margin:0px 30px;font-size: 18px;text-align: center">
-    <button class="btn" onclick="other_page(-1)"><</button>
-    第<u id="now_page">1</u>页
-    <button class="btn" onclick="other_page(1)">></button>
+    <button class="btn btn-default navbar-btn" onclick="other_page(-1)"><</button>
+    第<u id="now_page">1</u>页/<sanp id = "pages"></sanp>
+    <button class="btn btn-default navbar-btn" onclick="other_page(1)">></button>
     每页显示
     <select class="form-control" id="each_nums" onchange="reset_get()" style="width: 100px;display: inline-block">
         <option value="5">5</option>
@@ -60,13 +61,13 @@
 <li id="delete_now" style="display: none"></li>
 
 <!--人员的增删改查-->
-<div>
+<div style="float: right">
     <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
             <input type="text" class="form-control" id = "user_no" placeholder="查找人员">
         </div>
     </form>
-    <button class="btn btn-default" ><i class="fa fa-search" aria-hidden="true" ></i>查找</button>
+    <button class="btn btn-default" onclick="reset_get()" ><i class="fa fa-search" aria-hidden="true" ></i>查找</button>
     <button class="btn btn-default navbar-btn" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus" aria-hidden="true"></i> 添加可登录人员</button>
     <button class="btn btn-default navbar-btn" id = 'deleteStudio' onclick="removeUser()"><i class="fa fa-minus" aria-hidden="true"></i> 删除可登录人员</button>
     <button class="btn btn-default navbar-btn" id="changeStudio" onclick="change()"  ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> 修改登录人员信息</button>
@@ -87,7 +88,13 @@
             </div>
             <div class="modal-body">
                 <form role="form">
-                    用户登录帐号：<input type="text" name = "studioName" id="user_name" class="form-control"  pattern="^.{2,20}$" oninvalid="setCustomValidity('2-20个字符');"  placeholder="请输入需要添加的新用户" required/><br>
+                    选择需要添加的员工
+                    <div class="form-group">
+                        <select class="form-control" id="empName">
+
+                        </select>
+                    </div>
+                    <%--用户登录帐号：<input type="text" name = "studioName" id="user_name" class="form-control"  pattern="^.{2,20}$" oninvalid="setCustomValidity('2-20个字符');"  placeholder="请输入需要添加的新用户" required/><br>--%>
                     用户登录权限：
                     <div class="form-group">
                         <select class="form-control" id = 'Job'>
@@ -96,8 +103,8 @@
                             <option value="boss">经理</option>
                         </select>
                     </div>
-                    登录密码：<input type="password" name = "sateCol" id = "pass" class="form-control" placeholder="请输入含有字母和数字的密码" required/><br>
-                    确认密码：<input type="password" name= "sat" id = "passAgain" class="form-control" placeholder="确认密码" onblur="check()" required/><span id = 'err'></span>
+                    登录密码：<input type="password" name = "sateCol" id = "pass" class="form-control" placeholder="请输入含有字母和数字的密码"  required/><span id = 'err1'></span><br>
+                    确认密码：<input type="password" name= "sat" id = "passAgain" class="form-control" placeholder="确认密码" onblur="check()" required/><span id = 'err'></span><br>
                 </form>
                 <div class="modal-footer">
                     <button class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -131,8 +138,8 @@
                             <option value="boss">经理</option>
                         </select>
                     </div>
-                    修改密码：<input type="text" name = "sateCol" id = "user_pass" class="form-control" placeholder="请输入含有字母和数字的密码" required/><br>
-                    确认密码：<input type="text" name= "sat" id = "user_passA" class="form-control" placeholder="确认密码">
+                    修改密码：<input type="text" name = "sateCol" id = "user_pass" class="form-control" placeholder="请输入含有字母和数字的密码" onblur="check2()"><span id = 'err2'></span><br>
+                    确认密码：<input type="text" name= "sat" id = "user_passA" class="form-control" placeholder="确认密码" onblur="check3()"><span id = 'err3'></span><br>
 
                 </form>
                 <div class="modal-footer">
@@ -149,18 +156,42 @@
 <div class="modal fade" id="error" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="alert alert-warning">
-            <a href="#" class="close" data-dismiss="alert">
-                &times;
-            </a>
             <strong>警告</strong><p id = 'waring'></p>
         </div>
     </div><!-- /.modal -->
 </div>
 </body>
 <script>
-//    message('./user.html');
+    //    message('./user.html');
+    getEmpnotUser();
     get_user_message('/me.jsp');
-//    account();
+    getUserCount();
+
+    //    account();
     get_user();
+    function getEmpnotUser() {
+        let emp = document.getElementById("empName");
+        let xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState == 4 && xhr.status == 200){
+                let res = xhr.responseText;
+                let json = JSON.parse(res);
+                if(json.status){
+                    emp.innerHTML = "<option selected>*</option>";
+                    for(let x of json.object){
+                        let c = document.createElement('option');
+                        c.setAttribute('value',x[0]);
+                        c.innerText = x[1];
+                        emp.appendChild(c);
+                    }
+                }
+
+
+            }
+        }
+        xhr.open("GET","/api/adduser");
+        xhr.send()
+
+    }
 </script>
 </html>

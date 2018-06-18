@@ -180,7 +180,7 @@ public class EmployeeDAO implements IEmployee{
         PreparedStatement pstmt = null;
         try
         {
-            String sql = "select * from employee where employee_name like ? limit ? , ?";
+            String sql = "select * from employee where emp_name like ? limit ? , ?";
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, "%" + employeeName + "%");// 拼接模糊查询串
             pstmt.setInt(2,offset);
@@ -198,6 +198,8 @@ public class EmployeeDAO implements IEmployee{
                 info.setEmp_tel_num(rs.getString("emp_tel_num"));
                 info.setEmp_addr(rs.getString("emp_addr"));
                 info.setEmp_email(rs.getString("emp_email"));
+                list.add(info);
+
             }
         }
         catch(Exception e)

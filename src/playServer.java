@@ -17,9 +17,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 @WebServlet(name="play",urlPatterns="/api/play")
-
 public class playServer extends HttpServlet{
-    private  static final long serialVersionUID = 1L;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/json;charset = utf-8");
@@ -136,7 +134,7 @@ public class playServer extends HttpServlet{
                 out.write(json.toString());
             }
         }
-        protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             response.setContentType("text/json; charset=utf-8");
             request.setCharacterEncoding("UTF-8");
             Writer out = response.getWriter();
@@ -144,6 +142,9 @@ public class playServer extends HttpServlet{
             int id;
 
             BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
+
+//            id = Integer.valueOf(hm.get("id"));
+
             String s = null;
             String data = "";
             while((s = br.readLine()) != null) {
@@ -164,9 +165,10 @@ public class playServer extends HttpServlet{
 
             }
 
-
             try {
                 id = Integer.valueOf(hm.get("id"));
+                System.out.println("需要删除的id:"+id);
+
 
             }
             catch (java.lang.Exception e){
@@ -175,6 +177,9 @@ public class playServer extends HttpServlet{
                 out.write(json.toString());
                 return ;
             }
+
+            //请求
+
             if(DAOFactory.createPlayDAO().delete(id)){
                 json.put("status",true);
                 out.write(json.toString());
@@ -184,8 +189,7 @@ public class playServer extends HttpServlet{
                 out.write(json.toString());
             }
         }
-
-        protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             response.setContentType("text/json; charset=utf-8");
             request.setCharacterEncoding("UTF-8");
             Writer out = response.getWriter();
@@ -224,8 +228,10 @@ public class playServer extends HttpServlet{
                 pl.setPlay_introduction(hm.get("play_introduction"));
                 pl.setPlay_image(hm.get("play_image"));
                 pl.setPlay_length(Integer.valueOf(hm.get("play_length")));
-                pl.setPlay_ticket_price(BigDecimal.valueOf(Integer.valueOf(hm.get("play_ticket_price"))));
+                pl.setPlay_ticket_price(new BigDecimal(hm.get("play_ticket_price")));
+//                pl.setPlay_ticket_price(BigDecimal.valueOf(hm.get("play_ticket_price")));
                 pl.setPlay_status(Integer.valueOf(hm.get("play_status")));
+                System.out.println(pl);
 
             }catch (Exception e){
                 e.printStackTrace();
@@ -246,7 +252,5 @@ public class playServer extends HttpServlet{
 
 
         }
-
-
 
 }
